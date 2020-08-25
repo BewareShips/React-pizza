@@ -1,0 +1,64 @@
+.sort{
+  position: relative;
+  &__label{
+    display: flex;
+    align-items: center;
+
+    b {
+      margin-right: 8px;
+    }
+
+    span {
+      color: orange;
+      border-bottom: 1px dashed orange;
+      cursor: pointer;
+    }
+  }
+
+  &__popup{
+    position: absolute;
+    right: 0;
+    margin-top: 15px;
+    background: #ffffff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px 0;
+    width: 160px;
+
+    ul {
+      overflow: hidden;
+      padding-left: 15px;
+      li {
+        padding: 5px ;
+        cursor: pointer;
+        list-style: none;
+
+        
+        
+        &.active,
+        &:hover {
+          background: rgb(241, 236, 236)
+        }
+
+        &.active {
+          font-weight: bold;
+          color: orange;
+        }
+      }
+    }
+  }
+ 
+  
+}
+
+
+
+
+
+@media (max-width: 1250px){
+  .sort{
+    display: flex;
+    align-self: flex-start;
+  }
+}

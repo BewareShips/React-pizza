@@ -1,0 +1,107 @@
+$buttonColor:#fe5f1e;
+
+.pizzaBlock {
+  width: 280px;
+  text-align: center;
+  margin-bottom: 65px;
+
+  &:not(:nth-of-type(4n)) {
+    margin-right: 37%;
+  }
+
+  &__image {
+    width: 260px;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+  &__selector {
+    display: flex;
+    flex-direction: column;
+    background-color: #e0dada;
+    border-radius: 10px;
+    padding: 5px;
+    ul {
+      display: flex;
+      padding: 0px;
+      margin: 5px;
+      justify-content: space-between;
+      list-style: none;
+      li {
+        flex: 1;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 5px 0;
+        &.active {
+          background:$buttonColor;
+          color:white;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+          border-radius: 5px;
+          cursor: auto;
+        }
+        &.disabled {
+          opacity: 0.4;
+          pointer-events: none;
+        }
+      }
+      li:not(:first-child) {
+        margin-left: 5px;
+      }
+    }
+  }
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  &__price {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: 0.015em;
+  }
+}
+
+.button {
+  display:flex;
+  justify-content: space-between;
+  background-color: $buttonColor;
+  border-radius: 30px;
+  padding: 10px 20px;
+  min-width: 100px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition:  0.5s all ease;
+
+  &,
+  span {
+    font-weight: 700;
+    margin-right: 10px;
+    color: #fff;
+    i{
+      padding: 0 8px;
+      border:1px solid transparent;
+    }
+  }
+}
+
+.button:hover{
+  background-color:#fff;
+  border:1px solid $buttonColor;
+  span{
+    color:$buttonColor
+  }
+  i{
+    border:1px solid $buttonColor;
+    background-color:$buttonColor;
+    border-radius: 50%;
+    color:#fff
+  }
+ 
+  
+}
