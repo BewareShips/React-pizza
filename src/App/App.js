@@ -12,6 +12,7 @@ function App() {
       <div>
       <MainPage/>
       <Cart/>
+      
         {/* <Route path="/" component={<MainPage/>} exact />
         <Route path="/cart" component={<Cart/>} exact /> */}
        
