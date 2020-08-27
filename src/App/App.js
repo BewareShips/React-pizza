@@ -5,16 +5,13 @@ import Header from '../Components/Header/Header';
 import Cart from '../Pages/Cart/Cart';
 import { Route, BrowserRouter } from "react-router-dom";
 
-function App() {
+const  App = () => {
   return (
     <div className={s.wrapper}>
       <Header/>
       <div>
-      <MainPage/>
-      <Cart/>
-      
-        {/* <Route path="/" component={<MainPage/>} exact />
-        <Route path="/cart" component={<Cart/>} exact /> */}
+        <Route path="/" component={MainPage} exact />
+        <Route path="/cart" component={Cart} exact />
        
       </div>
       

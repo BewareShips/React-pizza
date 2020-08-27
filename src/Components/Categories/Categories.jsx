@@ -1,19 +1,24 @@
-import React from 'react'
-import s from './Categories.module.scss'
+import React, { useState } from "react";
+import s from "./Categories.module.scss";
 
-function Categories() {
+function Categories({ item }) {
+  const [activeItem, setActiveItem] = useState(0);
   return (
     <div className={s.categories}>
-              <ul className={s.categories__list}>
-                <li className={s.active}>Все</li>
-                <li>Мясные</li>
-                <li>Вегетарианская</li>
-                <li>Гриль</li>
-                <li>Острые</li>
-                <li>Закрытые</li>
-              </ul>
-            </div>
-  )
+      <ul className={s.categories__list}>
+        {item && 
+          item.map((name, idx) => (
+          <li
+            className={activeItem == idx ? s.active : ""}
+            onClick={() => setActiveItem(idx)}
+            key={`${name}_${idx}`}
+          >
+            {name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default Categories
+export default Categories;

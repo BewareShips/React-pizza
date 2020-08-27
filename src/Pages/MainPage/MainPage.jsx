@@ -11,9 +11,8 @@ function MainPage() {
       <div className={s.content}>
         <div className={s.container}>
           <div className={s.content__top}>
-            <Categories/>
-            <SortBy/>
-            
+            <Categories  item={['Все','Мясные','Вегетарианская','Гриль','Острые','Закрытые']}/>
+            <SortBy item={['популярности','цене','алфавиту']}/>
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <PizzaBlock/>
