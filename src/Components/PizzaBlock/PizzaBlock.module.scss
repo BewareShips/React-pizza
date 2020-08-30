@@ -13,7 +13,7 @@ $buttonColor:#fe5f1e;
     width: 260px;
   }
   &__title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 900;
     margin-bottom: 20px;
   }
@@ -103,5 +103,19 @@ $buttonColor:#fe5f1e;
     color:#fff
   }
  
+  
+}
+
+
+@media (max-width: 685px){
+  .pizzaBlock{
+    width: 400px;
+    &__image {
+      width: 360px;
+    }
+  }
+  .button {
+    min-width: 225px;
+  }
   
 }

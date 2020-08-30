@@ -10,15 +10,11 @@ function SortBy({ item }) {
     document.body.addEventListener("click", onVisible);
   }, []);
 
-  const toogleVisible = () => (
-    setVisible(!visible)
-  );
+  const toogleVisible = () => setVisible(!visible);
 
-  const toActivateItem = (idx)=>{
-     setActiveItem(idx);
-     
-  }
-  
+  const toActivateItem = (idx) => {
+    setActiveItem(idx);
+  };
 
   const onVisible = (e) => {
     if (!e.path.includes(ref.current)) {
@@ -26,13 +22,21 @@ function SortBy({ item }) {
     }
   };
 
-  const itemSort = item.map((el,idx)=><li onClick={()=>toActivateItem(idx)} className={activeItem===idx ? s.active : " "}>{el}</li>)
+  const itemSort = item.map((el, idx) => (
+    <li
+      onClick={() => toActivateItem(idx)}
+      key={el.type}
+      className={activeItem === idx ? s.active : " "}
+    >
+      {el.name}
+    </li>
+  ));
 
   return (
     <div ref={ref} className={s.sort}>
       <div className={s.sort__label}>
         <b>Сортировка по:</b>
-  <span onClick={toogleVisible}>{item[activeItem]}</span>
+        <span onClick={toogleVisible}>{item[activeItem].name}</span>
       </div>
       {visible && (
         <div className={s.sort__popup}>

@@ -9,7 +9,7 @@ function Categories({ item }) {
         {item && 
           item.map((name, idx) => (
           <li
-            className={activeItem == idx ? s.active : ""}
+            className={activeItem === idx ? s.active : ""}
             onClick={() => setActiveItem(idx)}
             key={`${name}_${idx}`}
           >
