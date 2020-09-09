@@ -1,20 +1,13 @@
 import React from "react";
 import s from "./SortBy.module.scss";
 
-function SortBy({ item }) {
+function SortBy({ itemRatingPizzas,onClickSortType,activeSortType }) {
   const [visible, setVisible] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState(0);
   const ref = React.useRef();
 
   React.useEffect(() => {
     document.body.addEventListener("click", onVisible);
   }, []);
-
-  const toogleVisible = () => setVisible(!visible);
-
-  const toActivateItem = (idx) => {
-    setActiveItem(idx);
-  };
 
   const onVisible = (e) => {
     if (!e.path.includes(ref.current)) {
@@ -22,28 +15,37 @@ function SortBy({ item }) {
     }
   };
 
-  const itemSort = item.map((el, idx) => (
+  const toogleVisible = () => setVisible(!visible);
+
+  const toActivateItem = (el) => {
+    if(onClickSortType){
+      onClickSortType(el);
+    }
+  };
+
+  const itemSort = itemRatingPizzas.map((el, idx) => (
     <li
-      onClick={() => toActivateItem(idx)}
+      onClick={() => toActivateItem(el)}
       key={el.type}
-      className={activeItem === idx ? s.active : " "}
+      className={activeSortType === el.type ? s.active : " "}
     >
       {el.name}
     </li>
   ));
 
+  const activeLabel = itemRatingPizzas.find(obj=>obj.type === activeSortType)
+  console.log(itemRatingPizzas)
+  console.log(itemRatingPizzas.find(obj=>obj.type === activeSortType))
+
   return (
     <div ref={ref} className={s.sort}>
       <div className={s.sort__label}>
         <b>Сортировка по:</b>
-        <span onClick={toogleVisible}>{item[activeItem].name}</span>
+        <span onClick={toogleVisible}>{activeLabel.name}</span>
       </div>
       {visible && (
         <div className={s.sort__popup}>
           <ul>
-            {/* <li className={s.active}>популярности</li>
-                  <li>цене</li>
-                  <li>алфавиту</li> */}
             {itemSort}
           </ul>
         </div>

@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import s from './PizzaBlock.module.scss'
 
 
-function PizzaBlock({name,imageUrl,types,sizes,price,category,rating}) {
+
+
+function PizzaBlock({name,imageUrl,types,sizes,price,category,rating,isLoading}) {
   const [activeItem, setActiveItem] = React.useState(types[0])
   const [activeSize, setActiveSize] = React.useState(sizes[0])
   const typeItem = ['тонкое','традиционное']
   const typeSizes = [26,30,40]
 
+ 
+
   const onSelectedType = (idx)=>{
     setActiveItem(idx)
   }
+
+
   return (
     
             <div className={s.pizzaBlock}>
@@ -49,19 +55,19 @@ function PizzaBlock({name,imageUrl,types,sizes,price,category,rating}) {
   )
 }
 
-PizzaBlock.propTypes = {
-  name: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  types: PropTypes.arrayOf(PropTypes.string).isRequired,
-  sizes: PropTypes.arrayOf(PropTypes.string).isRequired,
-  price: PropTypes.number.isRequired
-}
+// PizzaBlock.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   imageUrl: PropTypes.string.isRequired,
+//   types: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   sizes: PropTypes.arrayOf(PropTypes.string).isRequired,
+//   price: PropTypes.number.isRequired
+// }
 
-PizzaBlock.defaultProps = {
-  name: '---',
-  price:0,
-  types:[],
-  sizes:[]
-}
+// PizzaBlock.defaultProps = {
+//   name: '---',
+//   price:0,
+//   types:[],
+//   sizes:[]
+// }
 
 export default PizzaBlock

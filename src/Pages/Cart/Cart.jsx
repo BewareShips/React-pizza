@@ -3,7 +3,7 @@ import s from "./Cart.module.scss";
 
 function Cart() {
   return (
-    <div class="header__cart">
+    <div className="header__cart">
       hiiiiiiiiii
     </div>
   );

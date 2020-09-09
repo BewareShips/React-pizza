@@ -3,38 +3,59 @@ import Categories from "../../Components/Categories/Categories";
 import SortBy from "../../Components/SortBy/SortBy";
 import s from "./MainPage.module.scss";
 import PizzaBlock from "../../Components/PizzaBlock/PizzaBlock";
+import { useSelector, useDispatch } from "react-redux";
+import { setCategory,setSortBy} from "../../Redux/actions/filters";
+import {fetchPizzas} from '../../Redux/actions/pizzas'
+import LoadingPizzaBlock from "../../Components/PizzaBlock/LoadingPizzaBlock";
 
-function MainPage({ items }) {
-  return (
+const itemSortsPizzas = [
+  "Мясные",
+  "Вегетарианская",
+  "Гриль",
+  "Острые",
+  "Закрытые",
+];
+const itemRatingPizzas = [
+  { name: "популярности", type: "popular",order:'desc' },
+  { name: "цене", type: "price",order:'desc' },
+  { name: "алфавиту", type: "name",order:'asc' },
+];
+
+function MainPage() {
+  const dispatch = useDispatch();
+  const items = useSelector(({ pizza }) => pizza.items);
+  const isLoaded = useSelector(({ pizza }) => pizza.isLoaded);
+  const {category,sortBy} = useSelector(({ filter }) => filter);
   
-      <div className={s.content}>
-        <div className={s.container}>
-          <div className={s.content__top}>
-            <Categories
-              item={[
-                "Все",
-                "Мясные",
-                "Вегетарианская",
-                "Гриль",
-                "Острые",
-                "Закрытые",
-              ]}
-            />
-            <SortBy 
-              item={[
-                {name:"популярности",type:"popular"},
-                {name:"цене",type:"price"},
-                {name:"алфавиту",type:"alphabet"}
-              ]} />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className={s.wrapper}>
-            {items.map((el) => (
-              <PizzaBlock key={el.id} {...el}/>
-            ))}
-          </div>
+
+  React.useEffect(() =>{
+      dispatch(fetchPizzas(sortBy,category))
+  },[category,sortBy])
+
+  const onSelectedCategory =
+    ((idx) => {
+      dispatch(setCategory(idx))
+    });
+    
+    const onClickSortType =
+    ((type) => {
+      dispatch(setSortBy(type))
+    });
+
+  return (
+    <div className={s.content}>
+      <div className={s.container}>
+        <div className={s.content__top}>
+          <Categories activeCategory = {category} onClickedIt={onSelectedCategory} item={itemSortsPizzas} />
+          <SortBy activeSortType={sortBy.type} itemRatingPizzas={itemRatingPizzas} onClickSortType={onClickSortType} />
+        </div>
+        <h2 className="content__title">Все пиццы</h2>
+        <div className={s.wrapper}>
+          {isLoaded ? items.map((el) => <PizzaBlock key={el.id} isLoading={true} {...el} />) : Array(items.length).fill(0).map((_,idx) =><LoadingPizzaBlock key={idx}/>)}
+          
         </div>
       </div>
+    </div>
   );
 }
 

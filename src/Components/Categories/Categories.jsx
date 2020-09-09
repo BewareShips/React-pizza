@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import s from "./Categories.module.scss";
 
-function Categories({ item }) {
-  const [activeItem, setActiveItem] = useState(0);
+function Categories({activeCategory, item,onClickedIt }) {
+  
+ 
   return (
     <div className={s.categories}>
       <ul className={s.categories__list}>
+        <li className={activeCategory === null  ? s.active : ""}
+            onClick={() => onClickedIt(null)}>Все</li>
         {item && 
           item.map((name, idx) => (
           <li
-            className={activeItem === idx ? s.active : ""}
-            onClick={() => setActiveItem(idx)}
+            className={activeCategory === idx  ? s.active : ""}
+            onClick={() => onClickedIt(idx)}
             key={`${name}_${idx}`}
           >
             {name}
