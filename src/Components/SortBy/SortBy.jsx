@@ -9,8 +9,11 @@ function SortBy({ itemRatingPizzas,onClickSortType,activeSortType }) {
     document.body.addEventListener("click", onVisible);
   }, []);
 
-  const onVisible = (e) => {
-    if (!e.path.includes(ref.current)) {
+  
+
+  const onVisible = (event) => {
+     const path = event.path || (event.composedPath && event.composedPath()) 
+    if (!path.includes(ref.current)) {
       setVisible(false);
     }
   };
@@ -34,8 +37,7 @@ function SortBy({ itemRatingPizzas,onClickSortType,activeSortType }) {
   ));
 
   const activeLabel = itemRatingPizzas.find(obj=>obj.type === activeSortType)
-  console.log(itemRatingPizzas)
-  console.log(itemRatingPizzas.find(obj=>obj.type === activeSortType))
+  
 
   return (
     <div ref={ref} className={s.sort}>

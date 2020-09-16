@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import s from './PizzaBlock.module.scss'
+import ButtonPizza from '../ButtonPizza/ButtonPizza';
 
 
 
 
-function PizzaBlock({name,imageUrl,types,sizes,price,category,rating,isLoading}) {
+function PizzaBlock({id,name,imageUrl,types,sizes,price,onClickAddPizza,addedCount}) {
   const [activeItem, setActiveItem] = React.useState(types[0])
-  const [activeSize, setActiveSize] = React.useState(sizes[0])
+  const [activeSize, setActiveSize] = React.useState(0)
   const typeItem = ['тонкое','традиционное']
   const typeSizes = [26,30,40]
 
@@ -15,6 +16,18 @@ function PizzaBlock({name,imageUrl,types,sizes,price,category,rating,isLoading})
 
   const onSelectedType = (idx)=>{
     setActiveItem(idx)
+  }
+
+  const onAddPizza=() =>{
+    const obj = {
+      id,
+      name,
+      imageUrl,
+      price,
+      size:typeSizes[activeSize],
+      type:typeItem[activeItem]
+    }
+    onClickAddPizza(obj)
   }
 
 
@@ -26,7 +39,7 @@ function PizzaBlock({name,imageUrl,types,sizes,price,category,rating,isLoading})
                 src={imageUrl}
                 alt="Pizza"
               />
-              <h4 className={s.pizzaBlock__title}>{name}</h4>
+              <h4  className={s.pizzaBlock__title}>{name}</h4>
               <div className={s.pizzaBlock__selector}>
                 <ul >
                   {typeItem.map((el,idx)=><li key={`${el}__${idx}`} onClick={()=>onSelectedType(idx)}
@@ -38,17 +51,11 @@ function PizzaBlock({name,imageUrl,types,sizes,price,category,rating,isLoading})
                   {typeSizes.map((el,idx)=><li key={`${el}__${idx}`} onClick={()=>setActiveSize(idx)}
                   className={` ${activeSize ===idx ? s.active: " "}               
                               ${!sizes.includes(el) ? s.disabled : " "}`}>{el} см.</li>)}
-                  {/* <li className={s.active}>26 см.</li>
-                  <li>30 см.</li>
-                  <li className={s.disabled}>40 см.</li> */}
                 </ul>
               </div>
               <div className={s.pizzaBlock__bottom}>
                 <div className={s.pizzaBlock__price}>от {price} ₽</div>
-                <div className={s.button}>
-                  <span> + Добавить</span>
-                  <i>2</i>
-                </div>
+                <ButtonPizza addedCount={addedCount} onClick={onAddPizza}/>
               </div>
             </div>
           

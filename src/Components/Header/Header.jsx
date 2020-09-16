@@ -1,8 +1,9 @@
 import React from 'react'
-import Button from '../Button/Button'
+import ButtonCart from '../ButtonCart/ButtonCart'
 import logoSvg from '../../assets/img/pizza-logo.svg'
 import s from './Header.module.scss'
 import { Link } from 'react-router-dom'
+
 
 function Header() {
   return (
@@ -17,7 +18,7 @@ function Header() {
             </div>
           </div>
           </Link>
-          <Button/>
+          <ButtonCart/>
         </div>
       </div>
   )
