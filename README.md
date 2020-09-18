@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm run server`
+### `npm run json-server`
 Runs the fake JSON server
 
 ### `npm start`
