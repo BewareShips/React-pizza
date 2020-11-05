@@ -1,1 +1,1 @@
-web: node server.js
+wed:  server js
